@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        
+body {
+    margin: 0;
+    font-family: Arial;
+}
+
+/* LOGIN */
+.login-container {
+    width: 300px;
+    margin: 120px auto;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.login-container input {
+    width: 90%;
+    margin: 10px;
+    padding: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* DASHBOARD */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background: #0b3d91;
+    color: white;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+    padding: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 12px;
+    cursor: pointer;
+}
+
+.sidebar ul li:hover {
+    background: #062a66;
+}
+
+.main {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background: lightgray;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+input {
+    display: block;
+    margin: 8px 0;
+    padding: 8px;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>VES System</h2>
+    <ul>
+        <li onclick="showSection('dashboard')">Dashboard</li>
+        <li onclick="showSection('students')">Manage Students</li>
+        <li onclick="showSection('drivers')">Manage Drivers</li>
+        <li onclick="showSection('buses')">Manage Buses</li>
+        <li onclick="showSection('routes')">Manage Routes</li>
+    </ul>
+</div>
+
+<div class="main">
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="section">
+        <h1>Dashboard</h1>
+
+        <div class="cards">
+            <div class="card">Total Students<br><b>120</b></div>
+            <div class="card">Total Drivers<br><b>15</b></div>
+            <div class="card">Total Buses<br><b>10</b></div>
+        </div>
+    </div>
+
+    <!-- Students -->
+    <div id="students" class="section hidden">
+        <h2>Add Student</h2>
+
+        <input id="sname" placeholder="Name">
+        <input id="sclass" placeholder="Class">
+        <input id="roll" placeholder="Roll No">
+        <input id="route" placeholder="Route">
+
+        <button onclick="addStudent()">Add Student</button>
+
+        <h3>Student List</h3>
+        <ul id="studentList"></ul>
+    </div>
+
+    <!-- Drivers -->
+    <div id="drivers" class="section hidden">
+        <h2>Add Driver</h2>
+
+        <input id="dname" placeholder="Name">
+        <input id="did" placeholder="ID">
+        <input id="phone" placeholder="Phone">
+        <input id="licence" placeholder="Licence No">
+
+        <button onclick="addDriver()">Add Driver</button>
+
+        <ul id="driverList"></ul>
+    </div>
+
+    <!-- Buses -->
+    <div id="buses" class="section hidden">
+        <h2>Add Bus</h2>
+
+        <input id="busno" placeholder="Bus No">
+        <input id="busroute" placeholder="Route">
+
+        <button onclick="addBus()">Add Bus</button>
+
+        <ul id="busList"></ul>
+    </div>
+
+    <!-- Routes -->
+    <div id="routes" class="section hidden">
+        <h2>Add Route</h2>
+
+        <input id="rname" placeholder="Route Name">
+        <input id="stages" placeholder="Stages">
+        <input id="rbus" placeholder="Bus No">
+
+        <button onclick="addRoute()">Add Route</button>
+
+        <ul id="routeList"></ul>
+    </div>
+
+</div>
+
+<script>
+// NAVIGATION
+function showSection(id) {
+    let sections = document.querySelectorAll(".section");
+    sections.forEach(sec => sec.classList.add("hidden"));
+
+    document.getElementById(id).classList.remove("hidden");
+}
+
+// ADD DATA
+function addStudent() {
+    let name = document.getElementById("sname").value;
+    let list = document.getElementById("studentList");
+
+    let li = document.createElement("li");
+    li.innerText = name;
+    list.appendChild(li);
+}
+
+function addDriver() {
+    let name = document.getElementById("dname").value;
+    let list = document.getElementById("driverList");
+
+    let li = document.createElement("li");
+    li.innerText = name;
+    list.appendChild(li);
+}
+
+function addBus() {
+    let bus = document.getElementById("busno").value;
+    let list = document.getElementById("busList");
+
+    let li = document.createElement("li");
+    li.innerText = bus;
+    list.appendChild(li);
+}
+
+function addRoute() {
+    let route = document.getElementById("rname").value;
+    let list = document.getElementById("routeList");
+
+    let li = document.createElement("li");
+    li.innerText = route;
+    list.appendChild(li);
+}
+</script>
+</body>
+</html>
